@@ -1,0 +1,49 @@
+/* App Component */
+.App {
+	width: 100vw;
+	height: 100vh;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	padding: 20px;
+}
+
+.cards-container {
+	margin: 0 auto;
+	width: 90%;
+	height: 100%;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+}
+
+/* Card Component */
+.card {
+	width: 300px;
+	margin: 10px;
+	box-shadow: 4px 2px #3333331a;
+	padding: 10px 10px 0 0;
+}
+
+.card-infos {
+	display: flex;
+	flex-direction: column;
+	justify-content: end;
+}
+
+.heart-icon {
+	align-self: end;
+	font-size: 22px;
+}
+
+.heart-icon:hover {
+	cursor: pointer;
+	scale: 1.2;
+	color: #ff0000;
+}
+
+.card-image {
+	display: span;
+}

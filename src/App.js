@@ -1,5 +1,7 @@
 import "./App.css";
 import { useEffect, useState } from "react";
+// components
+import UserCard from "./components/UserCard";
 
 function App() {
 	//API URL
@@ -23,7 +25,16 @@ function App() {
 		fetchData();
 	}, []);
 
-	return <div className="App"></div>;
+	return (
+		<div className="App">
+			<div className="cards-container">
+				{/* Render the fetched data */}
+				{data.map((user) => (
+					<UserCard user={user} key={user.id} />
+				))}
+			</div>
+		</div>
+	);
 }
 
 export default App;
