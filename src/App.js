@@ -17,6 +17,8 @@ function App() {
 
 	// Fetch data from the API
 	const fetchData = async () => {
+		// Turn on the loader
+		setIsLoading(true);
 		try {
 			const response = await fetch(apiUrl);
 			const result = await response.json();
@@ -24,12 +26,14 @@ function App() {
 			console.log("FETCH DATA:", result);
 		} catch (error) {
 			console.error("Error fetching data:", error);
+		} finally {
+			// Turn off the loader
+			setIsLoading(false);
 		}
 	};
 
 	// Fetch data from the API when the component mounts
 	useEffect(() => {
-		setIsLoading(true);
 		fetchData();
 	}, []);
 
