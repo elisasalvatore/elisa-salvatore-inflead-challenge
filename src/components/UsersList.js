@@ -1,14 +1,15 @@
 import React from "react";
 // custom components
 import UserCard from "./UserCard";
+import FavoriteBtn from "./FavoriteBtn";
 
-export default function UsersList({ users }) {
+export default function UsersList({ user, handleFavoritesClick }) {
 	return (
 		<>
-			{/* Render all users */}
-			{users.map((user) => (
-				<UserCard key={user.id} user={user} />
-			))}
+			<div key={user.uid}>
+				<FavoriteBtn user={user} handleFavoritesClick={handleFavoritesClick} />
+				<UserCard user={user} />
+			</div>
 		</>
 	);
 }
