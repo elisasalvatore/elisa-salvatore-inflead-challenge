@@ -5,7 +5,7 @@ import ReactFlipCard from "reactjs-flip-card";
 import FrontCard from "./flipCard/FrontCard";
 import BackCard from "./flipCard/BackCard";
 
-export default function UserCard({ user }) {
+export default function UserCard({ user, handleFavoritesClick }) {
 	const containerStyle = {
 		width: "300px",
 		height: "400px",
@@ -23,7 +23,9 @@ export default function UserCard({ user }) {
 				// Front Card
 				frontComponent={<FrontCard user={user} />}
 				// Back Card
-				backComponent={<BackCard user={user} />}
+				backComponent={
+					<BackCard user={user} handleFavoritesClick={handleFavoritesClick} />
+				}
 			/>
 		</>
 	);

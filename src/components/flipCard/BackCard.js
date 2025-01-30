@@ -2,20 +2,17 @@ import React from "react";
 // bootstrap components
 import Card from "react-bootstrap/Card";
 import ListGroup from "react-bootstrap/ListGroup";
+//custom components
+import FavoriteBtn from "../FavoriteBtn";
 
-export default function BackCard({ user }) {
-	const { first_name, last_name, avatar, email, phone_number, address } = user;
+export default function BackCard({ user, handleFavoritesClick }) {
+	const { avatar, email, phone_number, address } = user;
 	return (
 		<Card className="card bg-dark text-white">
-			{/* Card header */}
-			<div className="card-header">
-				<Card.Title className="card-title">
-					{first_name} {last_name}
-				</Card.Title>
-			</div>
+			<FavoriteBtn user={user} handleFavoritesClick={handleFavoritesClick} />
 
 			{/* Card image */}
-			<Card.Img className="card-image" src={avatar} alt="User image" />
+			<Card.Img src={avatar} alt="User image" />
 			<Card.ImgOverlay className="card-infos">
 				{/* User infos */}
 				<ListGroup>

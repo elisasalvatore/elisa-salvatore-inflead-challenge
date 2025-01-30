@@ -1,22 +1,17 @@
 import "./App.css";
 import React, { useEffect, useState } from "react";
-import { useCookies } from "react-cookie";
 // custom components
 import UsersList from "./components/UsersList";
 import LoadingComponent from "./components/LoadingComponent";
 
 //API URL
-const apiUrl = "https://random-data-api.com/api/users/random_user?size=10";
+const apiUrl = "https://random-data-api.com/api/users/random_user?size=50";
 
 function App() {
 	// State to store the fetched data
 	const [users, setUsers] = useState([]);
-	// State to store favorite users
-	const [favorites, setFavorites] = useState([]);
 	// State to handling the initial loader
 	const [isLoading, setIsLoading] = useState(false);
-
-	const [cookies, setCookie] = useCookies(["favorite-users"]);
 
 	// Fetch data from the API
 	const fetchData = async () => {
@@ -40,76 +35,19 @@ function App() {
 		fetchData();
 	}, []);
 
-	// Save favorites to cookies
-	useEffect(() => {
-		if (favorites.length > 0) {
-			setCookie("favorite-users", favorites, { path: "/" });
-		}
-	}, [favorites, setCookie]);
-
-	// Function to add favorite user
-	const addFavoriteUser = (user) => {
-		// Check if user is already in favorites to prevent duplicates
-		if (!favorites.some((favorite) => favorite.uid === user.uid)) {
-			const newFavoriteList = [...favorites, user];
-			setFavorites(newFavoriteList);
-		}
-	};
-
-	// Function to remove favorite user
-	const removeFavoriteUser = (user) => {
-		const newFavoriteList = favorites.filter(
-			(favorite) => favorite.uid !== user.uid
-		);
-		setFavorites(newFavoriteList);
-	};
-
 	return (
 		<div className="App">
-			{/* Showing Loading component */}
-			{isLoading ? (
-				<LoadingComponent />
-			) : (
-				<>
-					{/* Showing Users Cards */}
-					<div className="cards-container">
-						<div className="cards">
-							{/* Handling title of Fav users */}
-							{favorites && favorites.length > 0 ? (
-								<div className="text-center w-100">
-									<h2>Favorites</h2>
-								</div>
-							) : (
-								<h2>Favorites: 0</h2>
-							)}
-							{/* Fav users */}
-							{favorites &&
-								favorites.length > 0 &&
-								favorites.map((user, index) => (
-									<UsersList
-										key={index}
-										user={user}
-										handleFavoritesClick={removeFavoriteUser}
-									/>
-								))}
-						</div>
-
-						<div className="cards">
-							<div className="text-center w-100">
-								<h2>Users</h2>
-							</div>
-							{/* All users */}
-							{users.map((user, index) => (
-								<UsersList
-									key={index}
-									user={user}
-									handleFavoritesClick={addFavoriteUser}
-								/>
-							))}
-						</div>
-					</div>
-				</>
-			)}
+			<div>
+				{/* Showing Loading component */}
+				{isLoading ? (
+					<LoadingComponent />
+				) : (
+					<>
+						{/* Showing Users Cards */}
+						<UsersList users={users} key={users.id} />
+					</>
+				)}
+			</div>
 		</div>
 	);
 }
