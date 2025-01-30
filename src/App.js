@@ -1,5 +1,6 @@
 import "./App.css";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useCookies } from "react-cookie";
 // custom components
 import UsersList from "./components/UsersList";
 import LoadingComponent from "./components/LoadingComponent";
@@ -14,6 +15,8 @@ function App() {
 	const [favorites, setFavorites] = useState([]);
 	// State to handling the initial loader
 	const [isLoading, setIsLoading] = useState(false);
+
+	const [cookies, setCookie] = useCookies(["favorite-users"]);
 
 	// Fetch data from the API
 	const fetchData = async () => {
@@ -36,6 +39,13 @@ function App() {
 	useEffect(() => {
 		fetchData();
 	}, []);
+
+	// Save favorites to cookies
+	useEffect(() => {
+		if (favorites.length > 0) {
+			setCookie("favorite-users", favorites, { path: "/" });
+		}
+	}, [favorites, setCookie]);
 
 	// Function to add favorite user
 	const addFavoriteUser = (user) => {
