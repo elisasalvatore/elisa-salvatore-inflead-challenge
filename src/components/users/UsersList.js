@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 import { useCookies } from "react-cookie";
 
 // custom components
-import DisplayUsers from "./users/DisplayUsers";
-import DisplayFavoriteUsers from "./users/DisplayFavoriteUsers";
-import LoadMoreBtn from "./LoadMoreBtn";
+import DisplayUsers from "./DisplayUsers";
+import DisplayFavoriteUsers from "./DisplayFavoriteUsers";
+import LoadMoreBtn from "../LoadMoreBtn";
 
 export default function UsersList({ users }) {
 	// State to store favorite users

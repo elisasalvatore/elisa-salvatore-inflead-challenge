@@ -1,7 +1,7 @@
 import "./App.css";
 import React, { useEffect, useState } from "react";
 // custom components
-import UsersList from "./components/UsersList";
+import UsersList from "./components/users/UsersList";
 import LoadingComponent from "./components/LoadingComponent";
 
 //API URL

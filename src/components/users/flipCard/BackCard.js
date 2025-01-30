@@ -3,7 +3,7 @@ import React from "react";
 import Card from "react-bootstrap/Card";
 import ListGroup from "react-bootstrap/ListGroup";
 //custom components
-import FavoriteBtn from "../FavoriteBtn";
+import FavoriteBtn from "../../FavoriteBtn";
 
 export default function BackCard({ user, handleFavoritesClick }) {
 	const { avatar, email, phone_number, address } = user;

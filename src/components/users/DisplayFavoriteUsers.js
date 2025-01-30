@@ -1,6 +1,6 @@
 import React from "react";
 // custom components
-import UserCard from "../UserCard";
+import UserCard from "./UserCard";
 
 export default function DisplayFavoriteUsers({
 	favorites,
