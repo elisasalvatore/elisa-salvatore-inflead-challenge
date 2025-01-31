@@ -4,8 +4,9 @@ import { useCookies } from "react-cookie";
 import DisplayUsers from "./DisplayUsers";
 import DisplayFavoriteUsersCookies from "./DisplayFavoriteUsersCookies";
 import LoadMoreBtn from "../LoadMoreBtn";
+import RefreshUsersBtn from "../RefreshUsersBtn";
 
-export default function UsersList({ users, fetchData }) {
+export default function UsersList({ users, generateNewData }) {
 	// State to store favorite users
 	const [favorites, setFavorites] = useState([]);
 	// State to store cookies
@@ -69,6 +70,7 @@ export default function UsersList({ users, fetchData }) {
 				<DisplayFavoriteUsersCookies
 					cookies={cookies}
 					handleFavoritesClick={removeFavoriteUser}
+					favorites={favorites}
 				/>
 
 				{/* All users */}
@@ -76,10 +78,16 @@ export default function UsersList({ users, fetchData }) {
 					users={users}
 					visible={visible}
 					handleFavoritesClick={addFavoriteUser}
+					generateNewData={generateNewData}
 				/>
 			</div>
-			{/* Load more button */}
-			<LoadMoreBtn visible={visible} users={users} loadMoreClick={loadMore} />
+
+			<div className="ctn-btn">
+				{/* Refresh users button */}
+				<RefreshUsersBtn generateNewData={generateNewData} />
+				{/* Load more button */}
+				<LoadMoreBtn visible={visible} users={users} loadMoreClick={loadMore} />
+			</div>
 		</div>
 	);
 }

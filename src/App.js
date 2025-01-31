@@ -44,7 +44,11 @@ function App() {
 				) : (
 					<>
 						{/* Showing Users Cards */}
-						<UsersList users={users} key={users.id} />
+						<UsersList
+							users={users}
+							key={users.id}
+							generateNewData={fetchData}
+						/>
 					</>
 				)}
 			</div>
