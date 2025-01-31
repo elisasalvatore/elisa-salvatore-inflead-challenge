@@ -5,7 +5,7 @@ import DisplayUsers from "./DisplayUsers";
 import DisplayFavoriteUsersCookies from "./DisplayFavoriteUsersCookies";
 import LoadMoreBtn from "../LoadMoreBtn";
 
-export default function UsersList({ users }) {
+export default function UsersList({ users, fetchData }) {
 	// State to store favorite users
 	const [favorites, setFavorites] = useState([]);
 	// State to store cookies
@@ -21,9 +21,11 @@ export default function UsersList({ users }) {
 			const newFavoriteList = [...favorites, user];
 			setFavorites(newFavoriteList);
 
-			// Add user to cookies list (displayed)
-			const newCookiesList = [...cookies["favorite-users"], user];
-			setFavorites(newCookiesList);
+			// Add user to cookies list (displayed), checking if the list is not empty
+			if (cookies["favorite-users"]) {
+				const newCookiesList = [...cookies["favorite-users"], user];
+				setFavorites(newCookiesList);
+			}
 
 			// Add user to cookies
 			setCookie("favorite-users", newFavoriteList, { path: "/" });
